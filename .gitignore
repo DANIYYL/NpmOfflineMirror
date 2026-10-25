@@ -1,0 +1,16 @@
+# exported artifacts (huge) – publish them as GitHub Release assets instead
+dist/
+*.tar
+*.tar.gz
+*.zip
+
+# local state
+storage/
+node_modules/
+warmup-failed.txt
+packages/popular-auto.txt
+
+# misc
+.env
+.DS_Store
+Thumbs.db

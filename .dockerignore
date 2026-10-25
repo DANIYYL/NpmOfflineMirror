@@ -1,0 +1,6 @@
+.git
+dist
+packages
+scripts
+*.md
+node_modules
