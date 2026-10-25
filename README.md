@@ -30,7 +30,7 @@
 ## Quick start
 
 ```bash
-git clone https://github.com/<you>/npm-offline-mirror.git
+git clone https://github.com/DANIYYL/NpmOfflineMirror.git
 cd npm-offline-mirror
 
 make up          # build & start the mirror on http://localhost:4873
