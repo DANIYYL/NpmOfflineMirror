@@ -1,0 +1,35 @@
+# Online mode: serves from cache, fetches (and caches) anything missing from npmjs.
+storage: /verdaccio/storage
+listen: 0.0.0.0:4873
+max_body_size: 100mb
+
+web:
+  title: npm-offline-mirror
+
+auth:
+  htpasswd:
+    file: ./htpasswd
+    max_users: -1        # registration disabled: this is a read-mostly mirror
+
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+    timeout: 8s          # don't hang when the connection is dead
+    max_fails: 2         # after 2 failures, stop trying for fail_timeout
+    fail_timeout: 1m
+    maxage: 30d          # reuse cached metadata for 30 days
+    cache: true
+
+packages:
+  '@*/*':
+    access: $all
+    publish: $authenticated
+    unpublish: $authenticated
+    proxy: npmjs
+  '**':
+    access: $all
+    publish: $authenticated
+    unpublish: $authenticated
+    proxy: npmjs
+
+log: { type: stdout, format: pretty, level: warn }
